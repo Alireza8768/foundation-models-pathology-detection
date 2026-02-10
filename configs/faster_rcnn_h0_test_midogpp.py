@@ -43,11 +43,9 @@ model = dict(
         norm='LN',
     ),
 
-    # RPN + ROI Head (Faster R-CNN)
     rpn_head=dict(
         anchor_generator=dict(
             type='AnchorGenerator',
-            # Für ~64px Objekte: etwas kleinere scales sind oft gut
             scales=[4, 8, 16],
             ratios=[0.5, 1.0, 2.0],
             strides=[7, 14, 28, 56, 112],
@@ -72,7 +70,6 @@ model = dict(
             ),
         )
     ),
-
 
     train_cfg=dict(
         rpn=dict(
@@ -156,7 +153,7 @@ test_pipeline = val_pipeline
 data_root = './data'
 
 train_dataloader = dict(
-    batch_size=6,          # FasterRCNN braucht oft mehr VRAM -> lieber kleiner starten
+    batch_size=6,    
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),

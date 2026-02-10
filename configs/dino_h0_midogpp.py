@@ -51,9 +51,6 @@ model = dict(
     ),
 )
 
-# ----------------------------
-# Pipelines
-# ----------------------------
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
@@ -123,14 +120,11 @@ test_dataloader = dict(
     )
 )
 
-# ----------------------------
-# Optimizer / Schedules
-# ----------------------------
 optim_wrapper = dict(
     _delete_=True,
     type='OptimWrapper',
     optimizer=dict(type='AdamW', lr=1e-4, weight_decay=1e-4),
-    clip_grad=dict(max_norm=0.1, norm_type=2),  # DINO/DETR oft kleiner
+    clip_grad=dict(max_norm=0.1, norm_type=2),
 )
 
 param_scheduler = [

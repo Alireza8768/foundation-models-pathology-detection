@@ -46,9 +46,6 @@ out_dir = Path(project_root / 'outputs/test/uni_threshold_analysis_fpn_downscale
 out_dir.mkdir(parents=True, exist_ok=True)
 
 
-# =====================
-# Vectorized IoU
-# =====================
 def iou_matrix(pred_xyxy: np.ndarray, gt_xyxy: np.ndarray) -> np.ndarray:
     """
     pred_xyxy: (P,4), gt_xyxy: (G,4)
@@ -76,10 +73,6 @@ def iou_matrix(pred_xyxy: np.ndarray, gt_xyxy: np.ndarray) -> np.ndarray:
     iou = np.where(union > 0, inter / union, 0.0).astype(np.float32)
     return iou
 
-
-# =====================
-# Matching (greedy by score)
-# =====================
 def match_greedy_by_score(gt_xyxy: np.ndarray, pred_xyxy: np.ndarray, pred_scores: np.ndarray, iou_thr: float):
     """
     Greedy matching:
@@ -117,10 +110,6 @@ def match_greedy_by_score(gt_xyxy: np.ndarray, pred_xyxy: np.ndarray, pred_score
     fn = G - tp
     return tp, fp, fn
 
-
-# =====================
-# Build test pipeline once
-# =====================
 def build_test_pipeline(cfg: Config):
     pipeline = cfg.test_dataloader.dataset.pipeline
     return Compose(pipeline)
@@ -210,7 +199,6 @@ def main():
         results.append((thr, precision, recall, f1, fp_per_img))
         print(f"THR={thr:>4.2f} | P={precision:.3f} R={recall:.3f} F1={f1:.3f} FP/img={fp_per_img:.3f}")
 
-    # Save CSV
     csv_path = out_dir / "threshold_results.csv"
     header = "thr,precision,recall,f1,fp_per_img\n"
     with open(csv_path, "w") as f:
@@ -218,13 +206,11 @@ def main():
         for r in results:
             f.write(f"{r[0]},{r[1]},{r[2]},{r[3]},{r[4]}\n")
 
-    # Best threshold by F1
     best = max(results, key=lambda x: x[3])
     print("\n====================")
     print(f"Best by F1: THR={best[0]:.2f} | P={best[1]:.3f} R={best[2]:.3f} F1={best[3]:.3f} FP/img={best[4]:.3f}")
     print("CSV gespeichert:", csv_path)
 
-    # Plots
     thrs = [r[0] for r in results]
     prec = [r[1] for r in results]
     rec = [r[2] for r in results]
@@ -259,7 +245,6 @@ def main():
     plt.close()
 
     print("Plots gespeichert in:", out_dir)
-
 
 if __name__ == '__main__':
     main()

@@ -164,7 +164,7 @@ test_pipeline = val_pipeline
 data_root = './data/'
 
 train_dataloader = dict(
-    batch_size=6,          # FasterRCNN braucht oft mehr VRAM -> lieber kleiner starten
+    batch_size=6,       
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),

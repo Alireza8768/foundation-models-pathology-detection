@@ -41,7 +41,7 @@ model = dict(
         type='SimpleFeaturePyramid',
         in_channels=1024,
         out_channels=256,
-        scale_factors=(2.0, 1.0, 0.5, 0.25, 0.125),  # -> 5 levels
+        scale_factors=(2.0, 1.0, 0.5, 0.25, 0.125),
         norm='LN',
     ),
     bbox_head=dict(

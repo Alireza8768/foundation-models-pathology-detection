@@ -34,9 +34,8 @@ def main():
     init_default_scope('mmdet')
 
     # Optional: Resume Training
-    #cfg.resume = True
+    # cfg.resume = True
     
-    # Runner erstellen und Training starten
     runner = Runner.from_cfg(cfg)
     runner.train()
 

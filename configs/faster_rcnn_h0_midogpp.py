@@ -82,11 +82,7 @@ model = dict(
                 match_low_quality=True,
                 ignore_iof_thr=-1
             ),
-            
-            # RPN erzeugt sehr viele Anchors (tausende).
-            #     pro Bild 256 Anchors
-            #     davon 50 % positiv, 50 % negativ 
-            
+                        
             sampler=dict(
                 type='RandomSampler',
                 num=256,

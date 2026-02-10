@@ -12,7 +12,6 @@ All model architecture, dataset settings, and training parameters
 are defined in the corresponding config file.
 """
 
-
 import os
 import sys
 from pathlib import Path
