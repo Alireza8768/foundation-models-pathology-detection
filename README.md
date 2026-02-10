@@ -26,6 +26,7 @@ practical benefits over classical convolutional backbones.
 - [Key Findings](#key-findings)
 - [Additional Baseline Evaluation](#additional-baseline-evaluation-on-an-independent-dataset)
 - [Repository Structure](#repository-structure)
+- [Configuration Philosophy](#Configuration-Philosophy)
 - [Reproducibility Notes](#reproducibility-notes)
 - [Limitations](#limitations)
 - [How to Start (Experimental)](#how-to-start-experimental)
@@ -231,11 +232,19 @@ a slight but measurable advantage in generalization to unseen data.
 ## Repository Structure
 
 - configs/ Detector and backbone configurations
-- custom_mmdet/ Custom backbones, necks, and integration code
+- src/ custom_mmdet/ Custom backbones, necks, and integration code
 - scripts/ Training, evaluation, and preprocessing scripts
 - analysis/ PCA and feature-space analysis tools
 - results/ Tables and figures generated during experiments
 
+---
+
+## Configuration Philosophy
+
+All experiments follow a shared configuration structure.
+Non-essential settings (data pipeline, optimization, training schedule) are kept
+identical across experiments, while variations are limited to backbone and neck
+components to ensure fair and interpretable comparisons.
 
 ---
 
@@ -274,8 +283,9 @@ A typical workflow includes:
 4. Adapting configuration files for the selected backbone and detector
 5. Running training and evaluation scripts
 
-Detailed setup instructions are intentionally omitted, as configurations and
-hardware requirements may vary significantly across systems.
+Detailed setup instructions are intentionally omitted, as configuration choices
+and hardware requirements may vary significantly across systems and research setups.
+
 
 ---
 

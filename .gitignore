@@ -1,0 +1,61 @@
+# --- Python & System ---
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+.ipynb_checkpoints/
+*.pyc
+
+# --- Daten & Checkpoints (Die schweren Brocken) ---
+# Wir ignorieren den gesamten Datensatz und alle Ausgaben
+#Datensatz/
+#outputs/
+#data/
+#work_dirs/
+
+# data-Ordner: Struktur ja, Inhalte nein
+data/*
+!data/.gitkeep
+!data/Datensatz
+!data/coco_annotations
+!data/README.md
+
+# Unterordner data/Datensatz sichtbar halten
+data/Datensatz/*
+!data/Datensatz/.gitkeep
+
+# Unterordner data/coco_annotations sichtbar halten
+data/coco_annotations/*
+!data/coco_annotations/.gitkeep
+
+# outputs-Ordner: Struktur ja, Inhalte nein
+outputs/*
+!outputs/.gitkeep
+!outputs/work_dirs
+!outputs/test
+!outputs/README.md
+
+# Unterordner outputs/work_dirs sichtbar halten
+outputs/work_dirs/*
+!outputs/work_dirs/.gitkeep
+
+# Unterordner outputs/test sichtbar halten
+outputs/test/*
+!outputs/test/.gitkeep
+
+# Falls du Dateien einzeln ignorieren willst:
+*.pth
+*.pkl
+*.log
+*.json
+
+# --- Virtuelle Umgebungen ---
+# Deine lokale mmdet_venv gehört nicht ins Repo
+venv/
+.venv/
+**/mmdet_venv/
+**/env/
+
+# --- IDE Einstellungen ---
+.vscode/
+.idea/
